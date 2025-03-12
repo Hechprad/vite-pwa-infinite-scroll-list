@@ -5,12 +5,13 @@ import ThemeToggle from '@/components/ThemeToggle';
 export default function Navbar() {
   const location = useLocation();
 
-  const isActive = (path: string) => {
-    return location.pathname === path
-      ? `border-b-[2px] border-primary-light hover:border-primary-dark
-      dark:border-primary-dark dark:hover:border-primary-light`
-      : '';
-  };
+  const isActive = (path: string) =>
+    `${
+      location.pathname === path
+        ? `border-b-[2px] border-accent-light hover:border-accent-dark
+      dark:border-accent-dark dark:hover:border-accent-light`
+        : ''
+    }`;
 
   return (
     <nav
@@ -19,7 +20,7 @@ export default function Navbar() {
     bg-background-light dark:bg-background-dark
     border-b-[1px] border-b-neutral-300 dark:border-b-neutral-500`}
     >
-      <ul className='flex space-x-4'>
+      <ul className='flex space-x-4 '>
         <li>
           <Link to='/' className={`${isActive('/')}`}>
             Home
