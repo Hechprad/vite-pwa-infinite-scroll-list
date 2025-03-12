@@ -1,0 +1,7 @@
+**/*.svg
+**/*.png
+coverage/
+node_modules/
+public/
+package-lock.json
+
