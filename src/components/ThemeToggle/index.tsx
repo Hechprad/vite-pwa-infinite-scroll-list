@@ -18,19 +18,19 @@ export default function ThemeToggle() {
       <button
         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
         className={`
-          relative inline-flex items-center justify-center w-12 h-6 rounded-full
+          relative inline-flex items-center justify-center w-[40px] h-[24px] rounded-full
           bg-gray-200 dark:bg-gray-700 transition-colors duration-200
           `}
       >
         <div
           className={`absolute left-1 transform transition-transform duration-200 ${
-            theme === 'dark' ? 'translate-x-6' : 'translate-x-0'
+            theme === 'dark' ? 'translate-x-[16px]' : 'translate-x-0'
           }`}
         >
           {theme === 'dark' ? (
-            <FiMoon className='text-yellow-400 w-4 h-4' />
+            <FiMoon className='text-yellow-400 w-[16px] h-[16px]' />
           ) : (
-            <FiSun className='text-yellow-500 w-4 h-4' />
+            <FiSun className='text-yellow-500 w-[16px] h-[16px]' />
           )}
         </div>
       </button>
