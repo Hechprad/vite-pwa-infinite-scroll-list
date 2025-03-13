@@ -33,6 +33,8 @@ export default function Products() {
 
       {!filtersInView ? (
         <Button
+          data-testid='scroll-to-top'
+          name='scroll-to-top'
           className='fixed bottom-[20px] right-[20px] rounded-full w-[48px] h-[48px] z-50'
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           onTouchStart={() => window.scrollTo({ top: 0, behavior: 'smooth' })}

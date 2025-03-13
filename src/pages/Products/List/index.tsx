@@ -34,15 +34,15 @@ export default function List({
       ))}
       {/* Add a skeleton loader for the last item to trigger the infinite scroll */}
       {!products.isLoading && !hasNoMoreResults ? (
-        <Skeleton ref={lastItemRef} />
+        <Skeleton ref={lastItemRef} data-testid='skeleton' />
       ) : null}
 
       {/* Skeleton row loader */}
       {products.isLoading ? (
         <>
-          <Skeleton className='w-full min-h-[350px]' />
-          <Skeleton className='w-full' />
-          <Skeleton className='w-full' />
+          <Skeleton className='w-full min-h-[350px]' data-testid='skeleton' />
+          <Skeleton className='w-full' data-testid='skeleton' />
+          <Skeleton className='w-full' data-testid='skeleton' />
         </>
       ) : null}
     </ul>
