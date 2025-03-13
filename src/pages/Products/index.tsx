@@ -1,45 +1,49 @@
-import { Skeleton } from '@/components/ui/skeleton';
-import useGetProducts from '@/services/products/hooks/useGetProducts';
+import { useInView } from 'react-intersection-observer';
+import { FiChevronUp } from 'react-icons/fi';
+
+import { Button } from '@/components/ui/button';
+import useGetProducts from '@/hooks/products/useGetProducts';
+
+import Filters from './Filters';
+import List from './List';
 
 export default function Products() {
-  const { hasNoMoreResults, products, ref } = useGetProducts();
+  const { ref: filtersRef, inView: filtersInView } = useInView();
+
+  const { handlePriceRange, handleSearch, hasNoMoreResults, products, ref } =
+    useGetProducts();
 
   return (
     <div className='p-[24px]'>
-      <h1 className='text-3xl font-bold text-dark dark:text-light'>Products</h1>
+      <h1 className='text-3xl font-bold text-dark dark:text-light text-center sm:text-start'>
+        Products
+      </h1>
 
-      <ul className='mt-[24px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[16px]'>
-        {products.items?.map((product) => (
-          <li
-            key={product.id}
-            className='border border-neutral-300 dark:border-neutral-500 rounded-lg p-[16px] shadow-sm'
-          >
-            <img
-              src={product.images[0]}
-              alt={product.title}
-              className='w-full h-48 object-cover rounded'
-            />
-            <h2 className='text-xl font-semibold mt-2'>{product.title}</h2>
-            <p className='text-secondary-light dark:text-secondary-dark'>
-              ${product.price}
-            </p>
-            <p className='mt-2 text-gray-500'>{product.description}</p>
-          </li>
-        ))}
-        {/* Add a skeleton loader for the last item to trigger the infinite scroll */}
-        {!products.isLoading && !hasNoMoreResults ? (
-          <Skeleton ref={ref} />
-        ) : null}
+      <Filters
+        filtersRef={filtersRef}
+        handlePriceRange={handlePriceRange}
+        handleSearch={handleSearch}
+      />
 
-        {/* Skeleton row loader */}
-        {products.isLoading && products.items.length === 0 ? (
-          <>
-            <Skeleton className='w-full min-h-[350px]' />
-            <Skeleton className='w-full min-h-[350px]' />
-            <Skeleton className='w-full min-h-[350px]' />
-          </>
-        ) : null}
-      </ul>
+      <List
+        hasNoMoreResults={hasNoMoreResults}
+        lastItemRef={ref}
+        products={products}
+      />
+
+      {!filtersInView ? (
+        <Button
+          className='fixed bottom-[20px] right-[20px] rounded-full w-[48px] h-[48px] z-50'
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onTouchStart={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
+          <FiChevronUp className='w-[24px] h-[24px]' />
+        </Button>
+      ) : null}
+
+      {hasNoMoreResults ? (
+        <p className='text-center mt-4'>No more products to load.</p>
+      ) : null}
     </div>
   );
 }

@@ -26,8 +26,18 @@ export type Product = {
   updatedAt: Date;
 };
 
+export type BuildUrlParams = {
+  offset?: number;
+  limit?: number;
+  title?: string;
+  priceMin?: number;
+  priceMax?: number;
+};
+
 export type useGetProducts = {
+  handlePriceRange: (min?: number, max?: number) => void;
+  handleSearch: (title: string) => void;
+  hasNoMoreResults: boolean;
   products: AsyncListData<Product>;
   ref: (node?: Element | null) => void;
-  hasNoMoreResults: boolean;
 };
