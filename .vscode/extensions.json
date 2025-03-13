@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "naumovs.color-highlight",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "anteprimorac.html-end-tag-labels",
+    "oderwat.indent-rainbow",
+    "eamodio.gitlens",
+    "bradlc.vscode-tailwindcss",
+    "austenc.tailwind-docs",
+    "esbenp.prettier-vscode"
+  ]
+}
