@@ -28,9 +28,15 @@ export default function ThemeToggle() {
           }`}
         >
           {theme === 'dark' ? (
-            <FiMoon className='text-yellow-400 w-[16px] h-[16px]' />
+            <FiMoon
+              data-testid='sun-icon'
+              className='text-yellow-400 w-[16px] h-[16px]'
+            />
           ) : (
-            <FiSun className='text-yellow-500 w-[16px] h-[16px]' />
+            <FiSun
+              data-testid='moon-icon'
+              className='text-yellow-500 w-[16px] h-[16px]'
+            />
           )}
         </div>
       </button>
