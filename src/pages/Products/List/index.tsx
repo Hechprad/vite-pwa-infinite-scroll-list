@@ -19,9 +19,8 @@ export default function List({
           <img
             src={product.images[0]}
             alt={product.title}
-            className='w-full max-w-[300px] h-[200px] object-cover rounded'
+            className='w-full h-[200px] object-cover rounded'
             loading='lazy'
-            sizes='300px'
             onError={(e) => (e.currentTarget.src = imageFallback)}
             onWaiting={(e) => (e.currentTarget.src = imageFallback)}
           />
